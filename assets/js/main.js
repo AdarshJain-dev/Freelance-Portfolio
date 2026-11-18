@@ -48,3 +48,24 @@ if (nav.querySelector('[href="index.html"][aria-current]')) {
   };
   if (Object.hasOwn(routes, location.hash)) location.replace(routes[location.hash]);
 }
+
+const portraitScene = document.querySelector(".visual");
+if (portraitScene) {
+  const motion = matchMedia("(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)");
+  function resetPortrait() {
+    for (const property of ["--tilt-x", "--tilt-y", "--depth-x"]) {
+      portraitScene.style.removeProperty(property);
+    }
+  }
+  portraitScene.addEventListener("pointermove", event => {
+    if (!motion.matches) return;
+    const bounds = portraitScene.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    portraitScene.style.setProperty("--tilt-x", x * 14 + "deg");
+    portraitScene.style.setProperty("--tilt-y", -y * 10 + "deg");
+    portraitScene.style.setProperty("--depth-x", x * 12 + "px");
+  });
+  portraitScene.addEventListener("pointerleave", resetPortrait);
+  motion.addEventListener("change", resetPortrait);
+}

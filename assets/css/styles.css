@@ -71,3 +71,19 @@ footer { color:#d8e2dd; background:var(--navy); font-size:.89rem }.foot { paddin
  .cards,.deliver,.facts,.contactgrid,.role { grid-template-columns:1fr }.statgrid>div { flex-direction:column; align-items:start; padding:0 10px }.statgrid span { font-size:.74rem }
  .sectionhead,.foot { align-items:start; flex-wrap:wrap }.foot>div { gap:14px }.role { gap:6px }
 }
+
+.brand-photo { border-radius:50%; outline:1px solid #9bb899; outline-offset:2px; object-fit:cover }
+.hero::before {
+  background-image:linear-gradient(90deg,#0d1824 9%,#0d1824ed 40%,#0d1824a8 86%),url("../images/cluster.webp");
+  background-size:cover; background-position:center;
+}
+.project-photo { position:relative; overflow:hidden; background:#172532; isolation:isolate }
+.project-photo::after { content:""; position:absolute; inset:50% 0 0; z-index:0; background:linear-gradient(transparent,#09111b66); pointer-events:none }
+.tech-mark { position:absolute; bottom:14px; left:16px; z-index:1; display:inline-flex; align-items:center; gap:8px; padding:5px 12px 5px 7px; border-radius:30px; color:#15222a; background:#fffffff5; font:600 .76rem/1.2 var(--mono); box-shadow:0 3px 12px #07181e33 }
+.tech-mark img { display:block; object-fit:contain }
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .visual { transform-style:preserve-3d }
+  .portrait { transform:rotateX(var(--tilt-y,0deg)) rotateY(var(--tilt-x,-5deg)); transition:transform .14s ease-out }
+  .chip { transform:translateZ(26px) translateX(var(--depth-x,0px)) }
+  .card .art { transition:transform .4s ease }.card:hover .art,.card:focus-within .art { transform:scale(1.025) }
+}
